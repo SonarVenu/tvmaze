@@ -1,0 +1,55 @@
+<nav class="#263238 blue-grey darken-4">
+    <a href="#" data-target="mobile-demo" class="sidenav-trigger #80cbc4 teal-text text-lighten-3"><i
+            class="material-icons">menu</i></a>
+    <div class="nav-wrapper container #263238 blue-grey darken-4">
+        <a style="text-decoration: none;" href="/" class="brand-logo #80cbc4 teal-text text-lighten-3"><b>TV</b>Maze</a>
+
+        <form method="POST" action="/search">
+            <div id="nav-mobile" class="searchBar right hide-on-med-and-down">
+                <input required type="text" id="searchQuery" name="searchQuery" placeholder="search"
+                    class=" #fafafa grey-text text-lighten-5">
+                <button type="submit" name="action" style="border:none;background:none;" class=" #fafafa grey-text text-lighten-5 "><i
+                        class="material-icons ">search</i>
+                </button>
+            </div>
+        </form>
+    </div>
+</nav>
+
+<div class="sidenav" id="mobile-demo">
+    <form method="POST" action="/search">
+        <div style="display:flex;flex-direction:row;width:200px;" class=" container">
+            <input type="text" name="searchQuery" placeholder="search" class=" #006064 cyan-text text-darken-4">
+            <button type="submit" name="action" style="border:none;background:none;" class="  "><i
+                    class="material-icons ">search</i>
+            </button>
+        </div>
+    </form>
+</div>
+
+<div class="container">
+
+    <h5 class="#fafafa grey-text text-lighten-5">Shows</h5>
+
+    <div class="divider #cfd8dc blue-grey lighten-4"></div>
+
+    <div style="padding-top: 20px; " class="row">
+        {{#each searchedShows}}
+
+         <div style=" background-color:none;" class="col s6 m3 ">
+                    <div style="background: none;box-shadow:none;" class="card">
+                        <a style="text-decoration: none;" href="/shows/{{this.show.id}}">
+                            <div class="card-image">
+                                <img style="width:100%;" src="{{{this.show.image.medium}}}" alt=""
+                                    class="hoverable responsive-img">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+        
+        {{/each}}
+    </div>
+
+
+</div>

@@ -1,0 +1,121 @@
+<style>
+    #page-navi {
+        display: flex;
+        width: 100%;
+        margin: 20px auto;
+        margin-bottom: 10px;
+        padding: 10px;
+        overflow: auto;
+        white-space: nowrap;
+    }
+
+    #page-navi li {
+        list-style: none;
+        padding-top:10px;
+        display: inline;
+    }
+
+    #page-navi li a {
+        float: left;
+        display: block;
+        padding: 8px 10px;
+        margin-right: 10px;
+        border: 1px solid #ccc;
+        text-decoration: none;
+        background: #fff;
+        -webkit-transition: background 200ms linear;
+        transition: background 200ms linear;
+        border-radius: 3px;
+        color: #000;
+    }
+
+    #page-navi li:last-child a {
+        margin-right: 0px;
+    }
+
+    #page-navi li a.current,
+    #page-navi li a.disable,
+    #page-navi li a:hover {
+        background: #2c3e50;
+        color: #fff;
+        border-bottom: 3px solid #fff;
+    }
+</style>
+
+
+
+<nav class="#263238 blue-grey darken-4">
+    <a href="#" data-target="mobile-demo" class="sidenav-trigger #80cbc4 teal-text text-lighten-3"><i
+            class="material-icons">menu</i></a>
+    <div class="nav-wrapper container #263238 blue-grey darken-4">
+        <a style="text-decoration: none;" href="/" class="brand-logo #80cbc4 teal-text text-lighten-3"><b>TV</b>Maze</a>
+
+        <form method="POST" action="/search">
+            <div id="nav-mobile" class="searchBar right hide-on-med-and-down">
+                <input required type="text" id="searchQuery" name="searchQuery" placeholder="search"
+                    class="#fafafa grey-text text-lighten-5">
+                <button type="submit" name="action" style="border:none;background:none;"
+                    class=" #fafafa grey-text text-lighten-5 "><i class="material-icons ">search</i>
+                </button>
+            </div>
+        </form>
+    </div>
+</nav>
+
+<div class="sidenav" id="mobile-demo">
+    <form method="POST" action="/search">
+        <div style="display:flex;flex-direction:row;width:200px;" class=" container">
+            <input type="text" name="searchQuery" placeholder="search" class=" #006064 cyan-text text-darken-4">
+            <button type="submit" name="action" style="border:none;background:none;" class="  "><i
+                    class="material-icons ">search</i>
+            </button>
+        </div>
+    </form>
+</div>
+
+<div class="container">
+
+    <h5 class="#fafafa grey-text text-lighten-5">Shows</h5>
+
+    <div class="divider #cfd8dc blue-grey lighten-4"></div>
+
+
+    <div style="padding-top: 20px; " class="row">
+        <div id='wrapper'>
+            <div class="contents">
+                {{#each names}}
+                <div style=" background-color:none;" class="col s6 m3 ">
+                    <div style="background: none;box-shadow:none;" class="card">
+                        <a style="text-decoration: none;" href="/shows/{{this.id}}">
+                            <div class="card-image">
+                                <img style="width:100%;" src="{{{this.image.medium}}}" alt=""
+                                    class="hoverable responsive-img">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+<script>
+    !function (e) { e.fn.pagination = function (a) { function t(t) { var s = e("." + r.contents + ".current").children().length, l = Math.ceil(s / r.items), o = '<ul id="page-navi">\t<li><a href="#" class="previos">' + r.previous + "</a></li>"; for (i = 0; i < l; i++)o += '\t<li><a href="#">' + (i + 1) + "</a></li>"; o += '\t<li><a href="#" class="next">' + r.next + "</a></li></ul>"; var c = t; 0 == t ? (c = parseInt(e("#page-navi li a.current").html())) - 1 != 0 && c-- : t == l + 1 && (c = parseInt(e("#page-navi li a.current").html())) + 1 != l + 1 && c++ , t = c, 0 == s && (o = ""), e("#page-navi").remove(), "top" == r.position ? e("." + r.contents + ".current").before(o) : e("." + r.contents + ".current").after(o), e("#page-navi li a").removeClass("current"), e("#page-navi li a").eq(t).addClass("current"), e("#page-navi li a").removeClass("disable"), c = parseInt(e("#page-navi li a.current").html()), c - 1 == 0 && e("#page-navi li a.previos").addClass("disable"), c == l && e("#page-navi li a.next").addClass("disable"); var u = a.items * (t - 1), d = a.items * t; t == l && (d = s), e("." + r.contents + ".current").children().hide(), e("." + r.contents + ".current").children().slice(u, d).fadeIn(a.time), 1 == r.scroll && e("html,body").animate({ scrollTop: n }, 0) } var r = { items: 5, contents: "contents", previous: "Previous&raquo;", next: "&laquo;Next", time: 800, start: 1, position: "bottom", scroll: !0 }, r = e.extend(r, a); e(this).addClass("jquery-tab-pager-tabbar"), $tab = e(this).find("li"); var n = 0; !function () { var a = r.start - 1; $tab.eq(a).addClass("current"), e("." + r.contents).hide().eq(a).show().addClass("current"), t(1) }(), $tab.click(function () { var a = $tab.index(this); $tab.removeClass("current"), e(this).addClass("current"), e("." + r.contents).removeClass("current").hide().eq(a).addClass("current").fadeIn(r.time), t(1) }), e(document).on("click", "#page-navi li a", function () { return !e(this).hasClass("disable") && (t(e("#page-navi li a").index(this)), !1) }), e(window).on("load scroll", function () { n = e(window).scrollTop() }) } }(jQuery);
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#tab").pagination({
+            items: 16,
+            contents: 'contents',
+            previous: 'Previous',
+            next: 'Next',
+            position: 'bottom',
+        });
+    });
+</script>

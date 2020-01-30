@@ -1,0 +1,52 @@
+<nav class="#263238 blue-grey darken-4">
+    <a href="#" data-target="mobile-demo" class="sidenav-trigger #80cbc4 teal-text text-lighten-3"><i
+            class="material-icons">menu</i></a>
+    <div class="nav-wrapper container #263238 blue-grey darken-4">
+        <a style="text-decoration: none;" href="/" class="brand-logo #80cbc4 teal-text text-lighten-3"><b>TV</b>Maze</a>
+        <form method="POST" action="/search">
+            <div id="nav-mobile" class="searchBar right hide-on-med-and-down">
+                <input required type="text" id="searchQuery" name="searchQuery" placeholder="search"
+                    class=" #fafafa grey-text text-lighten-5">
+                <button type="submit" name="action" style="border:none;background:none;" class=" #fafafa grey-text text-lighten-5 "><i
+                        class="material-icons ">search</i>
+                </button>
+            </div>
+        </form>
+    </div>
+</nav>
+
+<div class="sidenav" id="mobile-demo">
+    <form method="POST" action="/search">
+        <div style="display:flex;flex-direction:row;width:200px;" class=" container">
+            <input type="text" name="searchQuery" placeholder="search" class=" #006064 cyan-text text-darken-4">
+            <button type="submit" name="action" style="border:none;background:none;" class="  "><i
+                    class="material-icons ">search</i>
+            </button>
+        </div>
+    </form>
+</div>
+
+
+
+<div class="content">
+    <div class="container">
+
+        <h5 class="#fafafa grey-text text-lighten-5">Season {{{seasonInfo.number}}}</h5>
+
+        <div class="divider"></div>
+
+        {{#each episodesInfo}}
+        <div class="row hoverable">
+            <div style="padding-top:30px;" class="col s12 m3">
+                <img style="" class="" src="{{{this.image.medium}}}" />
+            </div>
+            <div style="padding-left:20px;" class="col s12 m12 l9">
+                <p style="font-size: 1.3rem;" class="#fafafa grey-text text-lighten-5"><b>{{{this.name}}}</b></p>
+                <p class="#b0bec5 blue-grey-text text-lighten-3"><b>Episode {{{this.number}}}</b> |<b>
+                        Runtime:</b> {{{this.runtime}}} mins | <b>Airdate</b>: {{{this.airdate}}}</p>
+                <div class="showSummary #fafafa grey-text text-lighten-5">{{{this.summary}}}</div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

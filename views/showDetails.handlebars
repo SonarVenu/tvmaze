@@ -1,0 +1,75 @@
+<nav class="#263238 blue-grey darken-4">
+    <a href="#" data-target="mobile-demo" class="sidenav-trigger #80cbc4 teal-text text-lighten-3"><i
+            class="material-icons">menu</i></a>
+    <div class="nav-wrapper container #263238 blue-grey darken-4">
+        <a style="text-decoration: none;" href="/" class="brand-logo #80cbc4 teal-text text-lighten-3"><b>TV</b>Maze</a>
+        <form method="POST" action="/search">
+            <div id="nav-mobile" class="searchBar right hide-on-med-and-down">
+                <input required type="text" id="searchQuery" name="searchQuery" placeholder="search"
+                    class=" #fafafa grey-text text-lighten-5">
+                <button type="submit" name="action" style="border:none;background:none;" class=" #fafafa grey-text text-lighten-5 "><i
+                        class="material-icons ">search</i>
+                </button>
+            </div>
+        </form>
+    </div>
+</nav>
+
+<div class="sidenav" id="mobile-demo">
+    <form method="POST" action="/search">
+        <div style="display:flex;flex-direction:row;width:200px;" class=" container">
+            <input type="text" name="searchQuery" placeholder="search" class=" #006064 cyan-text text-darken-4">
+            <button type="submit" name="action" style="border:none;background:none;" class="  "><i
+                    class="material-icons ">search</i>
+            </button>
+        </div>
+    </form>
+</div>
+
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div style="padding-top:30px;" class="col s12 m3">
+                <img class="" src="{{{showInfo.image.medium}}}" />
+            </div>
+            <div style="padding-left:0px;" class=" col s12 m12 l9">
+                <h4 class="#fafafa grey-text text-lighten-5"><b>{{{showInfo.name}}}</b></h4>
+                <p class="#b0bec5 blue-grey-text text-lighten-3"><b>Rating:</b> {{{showInfo.rating.average}}} |<b>
+                        Language:</b> {{{showInfo.language}}} | <b>Premiered</b>: {{{showInfo.premiered}}}</p>
+                <div class="showSummary #fafafa grey-text text-lighten-5">{{{showInfo.summary}}}</div>
+                <p class="#b0bec5 blue-grey-text text-lighten-3"><b>Genres: </b>{{{showInfo.genres}}} | <b>Type:</b>
+                    {{{showInfo.type}}}</p>
+                <p class="#b0bec5 blue-grey-text text-lighten-3"><b>Schedule:</b> {{{showInfo.schedule.days}}} at
+                    {{{showInfo.schedule.time}}} | <b>Network:</b> {{{showInfo.network.name}}}</p>
+            </div>
+        </div>
+
+        <h5 class="#fafafa grey-text text-lighten-5">Seasons</h5>
+
+        <div class="divider"></div>
+
+        <div style="padding-top: 20px; " class="row">
+            {{#each seasonInfo}}
+            <div  class="col s6 m3">
+                <a href="/seasons/{{{this.id}}}/episodes">
+                <img src="{{{this.image.medium}}}" alt="" class="hoverable responsive-img">
+                <p class="#cfd8dc blue-grey-text text-lighten-4"><b>Season {{{this.number}}}</b></p>
+                </a>
+            </div>
+            {{/each}}
+        </div>
+
+        <h5 class="#fafafa grey-text text-lighten-5">Cast</h5>
+
+        <div class="divider"></div>
+
+        <div style="padding-top: 20px; " class="row">
+            {{#each castInfo}}
+            <div class="col s6 m3">
+                <img src="{{{this.person.image.medium}}}" alt="" class="hoverable responsive-img">
+                <p class="#cfd8dc blue-grey-text text-lighten-4">{{{this.person.name}}} as <b class="truncate">{{{this.character.name}}}</b></p>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
